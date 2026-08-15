@@ -1,4 +1,4 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+/*import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rania_store/core/network/api_result.dart';
 import 'package:rania_store/features/products/repos/product_repo.dart';
 
@@ -24,7 +24,8 @@ class ProductCubit extends Cubit<ProductState> {
         },
       );
     } catch (e) {
+      print(e);
       emit(ProductState.fail(e.toString()));
     }
   }
-}
+}*/

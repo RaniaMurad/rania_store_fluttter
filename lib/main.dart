@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rania_store/core/di/dependency_injection.dart';
 import 'package:rania_store/features/cart/logic/cubit/cart_cubit.dart';
 import 'package:rania_store/features/favorite/logic/cubit/favorite_cubit.dart';
 import 'package:rania_store/features/home/home_screen.dart';
 import 'package:rania_store/features/home/home_screen_new.dart';
-
+import 'package:rania_store/features/home/home_screen_new2.dart';
 import 'package:rania_store/features/splash/splash_screen.dart';
 
 import 'core/theme/app_theme.dart';
@@ -14,15 +15,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await setupGetIt();
-  // runApp(const RaniaStoreApp());
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => getIt<CartCubit>()),
 
-        BlocProvider(create: (_) => getIt<FavoriteCubit>()),
-      ],
-      child: const RaniaStoreApp(),
+  runApp(
+    ProviderScope(
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => getIt<CartCubit>()),
+          BlocProvider(create: (_) => getIt<FavoriteCubit>()),
+        ],
+        child: const RaniaStoreApp(),
+      ),
     ),
   );
 }
