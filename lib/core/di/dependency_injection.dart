@@ -22,11 +22,11 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton(() => ProductRepo(apiService: getIt()));
 
   // Cubit
- // getIt.registerFactory(() => ProductCubit(getIt()));
+  // getIt.registerFactory(() => ProductCubit(getIt()));
 
   getIt.registerLazySingleton(() => AuthRepo(apiService: getIt()));
 
   getIt.registerFactory(() => AuthCubit(getIt()));
-  getIt.registerLazySingleton<CartCubit>(() => CartCubit());
-  getIt.registerLazySingleton<FavoriteCubit>(() => FavoriteCubit());
+  //getIt.registerLazySingleton<CartCubit>(() => CartCubit());
+  //getIt.registerLazySingleton<FavoriteCubit>(() => FavoriteCubit());
 }

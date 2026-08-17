@@ -1,28 +1,31 @@
-/*import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:rania_store/core/theme/app_colors.dart';
-import 'package:rania_store/features/cart/logic/cubit/cart_cubit.dart';
-import 'package:rania_store/features/cart/logic/cubit/cart_state.dart';
+import 'package:rania_store/features/cart/logic/providers/cart_provider.dart';
+import 'package:rania_store/features/checkout/checkout_screen_new.dart';
 import 'package:rania_store/features/products/new/cart_item_card_new.dart';
 
 // أضيفي هذا الاستيراد بعد إنشاء صفحة Checkout
 import 'package:rania_store/features/checkout/checkout_screen.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends ConsumerWidget {
   const CartScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return const CartScreenContent();
   }
 }
 
-class CartScreenContent extends StatelessWidget {
+class CartScreenContent extends ConsumerWidget {
   const CartScreenContent({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final items = ref.watch(cartProvider);
+
     return Directionality(
       textDirection: TextDirection.rtl,
 
@@ -46,63 +49,58 @@ class CartScreenContent extends StatelessWidget {
         ),
 
         // ================= BODY =================
-        body: BlocBuilder<CartCubit, CartState>(
-          builder: (context, state) {
-            final items = state.maybeWhen(
-              updated: (items) => items,
-              orElse: () => const [],
-            );
-
-            // ================= EMPTY CART =================
-            if (items.isEmpty) {
-              return const Center(
+        body: items.isEmpty
+            ? const Center(
                 child: Text(
                   'السلة فارغة',
 
-                  style: TextStyle(color: AppColors.textGray, fontSize: 16),
-                ),
-              );
-            }
-
-            final cartCubit = context.read<CartCubit>();
-
-            return Column(
-              children: [
-                // ================= PRODUCTS =================
-                Expanded(
-                  child: ListView.builder(
-                    padding: const EdgeInsets.all(16),
-
-                    itemCount: items.length,
-
-                    itemBuilder: (context, index) {
-                      final item = items[index];
-
-                      return CartItemCard(
-                        item: item,
-
-                        onRemove: () {
-                          cartCubit.removeFromCart(item);
-                        },
-
-                        onIncrement: () {
-                          cartCubit.increaseQuantity(item);
-                        },
-
-                        onDecrement: () {
-                          cartCubit.decreaseQuantity(item);
-                        },
-                      );
-                    },
+                  style: TextStyle(
+                    color: AppColors.textGray,
+                    fontSize: 16,
                   ),
                 ),
+              )
+            : Column(
+                children: [
+                  // ================= PRODUCTS =================
+                  Expanded(
+                    child: ListView.builder(
+                      padding: const EdgeInsets.all(16),
 
-                // ================= SUMMARY =================
-                _buildSummary(context, cartCubit),
-              ],
-            );
-          },
-        ),
+                      itemCount: items.length,
+
+                      itemBuilder: (context, index) {
+                        final item = items[index];
+
+                        return CartItemCard(
+                          item: item,
+
+                          onRemove: () {
+                            ref
+                                .read(cartProvider.notifier)
+                                .removeFromCart(item);
+                          },
+
+                          onIncrement: () {
+                            ref
+                                .read(cartProvider.notifier)
+                                .increaseQuantity(item);
+                          },
+
+                          onDecrement: () {
+                            ref
+                                .read(cartProvider.notifier)
+                                .decreaseQuantity(item);
+                          },
+                        );
+                      },
+                    ),
+                  ),
+
+                  // ================= SUMMARY =================
+                  _buildSummary(context, ref),
+                ],
+              ),
       ),
     );
   }
@@ -111,14 +109,20 @@ class CartScreenContent extends StatelessWidget {
   // SUMMARY
   // =====================================================
 
-  Widget _buildSummary(BuildContext context, CartCubit cartCubit) {
+  Widget _buildSummary(BuildContext context, WidgetRef ref) {
+    final totalPrice = ref.read(cartProvider.notifier).totalPrice;
+
     return Container(
       padding: const EdgeInsets.all(20),
 
       decoration: BoxDecoration(
         color: AppColors.fieldFill,
 
-        border: const Border(top: BorderSide(color: AppColors.fieldBorder)),
+        border: const Border(
+          top: BorderSide(
+            color: AppColors.fieldBorder,
+          ),
+        ),
       ),
 
       child: Column(
@@ -131,11 +135,14 @@ class CartScreenContent extends StatelessWidget {
               const Text(
                 'الإجمالي',
 
-                style: TextStyle(color: AppColors.textDark, fontSize: 15),
+                style: TextStyle(
+                  color: AppColors.textDark,
+                  fontSize: 15,
+                ),
               ),
 
               Text(
-                '\$${cartCubit.totalPrice.toStringAsFixed(2)}',
+                '\$${totalPrice.toStringAsFixed(2)}',
 
                 style: const TextStyle(
                   fontSize: 20,
@@ -158,7 +165,9 @@ class CartScreenContent extends StatelessWidget {
                 Navigator.push(
                   context,
 
-                  MaterialPageRoute(builder: (_) => const CheckoutScreen()),
+                  MaterialPageRoute(
+                    builder: (_) => const CheckoutScreen(),
+                  ),
                 );
               },
 
@@ -185,4 +194,4 @@ class CartScreenContent extends StatelessWidget {
       ),
     );
   }
-}*/
+}

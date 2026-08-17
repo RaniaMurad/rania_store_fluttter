@@ -1,4 +1,4 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+/*import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rania_store/features/products/new/cart_item_model_new.dart';
 import 'cart_state.dart';
 
@@ -89,4 +89,4 @@ class CartCubit extends Cubit<CartState> {
   int get totalItems {
     return cartItems.fold(0, (total, item) => total + item.quantity);
   }
-}
+}*/
