@@ -8,7 +8,7 @@ import 'package:rania_store/features/checkout/checkout_screen_new.dart';
 import 'package:rania_store/features/products/new/cart_item_card_new.dart';
 
 // أضيفي هذا الاستيراد بعد إنشاء صفحة Checkout
-import 'package:rania_store/features/checkout/checkout_screen.dart';
+//import 'package:rania_store/features/checkout/checkout_screen.dart';
 
 class CartScreen extends ConsumerWidget {
   const CartScreen({super.key});
@@ -26,10 +26,7 @@ class CartScreenContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final items = ref.watch(cartProvider);
 
-    return Directionality(
-      textDirection: TextDirection.rtl,
-
-      child: Scaffold(
+    return  Scaffold(
         backgroundColor: AppColors.background,
 
         // ================= APP BAR =================
@@ -101,7 +98,7 @@ class CartScreenContent extends ConsumerWidget {
                   _buildSummary(context, ref),
                 ],
               ),
-      ),
+      
     );
   }
 

@@ -4,8 +4,8 @@ import 'package:rania_store/core/network/dio_factory.dart';
 
 import 'package:rania_store/features/auth/data/repo/auth_repo.dart';
 import 'package:rania_store/features/auth/logic/cubit/auth_cubit.dart';
-import 'package:rania_store/features/cart/logic/cubit/cart_cubit.dart';
-import 'package:rania_store/features/favorite/logic/cubit/favorite_cubit.dart';
+//import 'package:rania_store/features/cart/logic/cubit/cart_cubit.dart';
+//import 'package:rania_store/features/favorite/logic/cubit/favorite_cubit.dart';
 //import 'package:rania_store/features/products/logic/cubit/product_cubit.dart';
 import 'package:rania_store/features/products/repos/product_repo.dart';
 

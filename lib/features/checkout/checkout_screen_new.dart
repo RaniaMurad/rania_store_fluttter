@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:rania_store/core/theme/app_colors.dart';
 import 'package:rania_store/features/cart/logic/providers/cart_provider.dart';
-import 'package:rania_store/features/payment/payment_screen.dart';
+//import 'package:rania_store/features/payment/payment_screen.dart';
 import 'package:rania_store/features/payment/payment_screen_new.dart';
 
 class CheckoutScreen extends ConsumerWidget {
@@ -18,9 +18,7 @@ class CheckoutScreen extends ConsumerWidget {
     final totalItems = cartNotifier.totalItems;
     final totalPrice = cartNotifier.totalPrice;
 
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
+    return  Scaffold(
         backgroundColor: AppColors.background,
 
         appBar: AppBar(
@@ -248,7 +246,7 @@ class CheckoutScreen extends ConsumerWidget {
             ],
           ),
         ),
-      ),
+      
     );
   }
 }

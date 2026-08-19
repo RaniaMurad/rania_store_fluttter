@@ -18,9 +18,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
+    return  Scaffold(
         backgroundColor: AppColors.background,
         body: SafeArea(
           child: SingleChildScrollView(
@@ -114,7 +112,7 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
           ),
         ),
-      ),
+      
     );
   }
 }

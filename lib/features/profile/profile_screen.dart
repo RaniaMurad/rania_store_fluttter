@@ -7,10 +7,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-
-      child: Scaffold(
+    return Scaffold(
         backgroundColor: AppColors.background,
 
         appBar: AppBar(
@@ -151,7 +148,7 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      
     );
   }
 
