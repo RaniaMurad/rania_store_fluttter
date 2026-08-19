@@ -49,6 +49,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   shared_preferences: ^2.5.5
   google_maps_flutter: ^2.14.2
+  flutter_riverpod: ^2.6.1
 
 dev_dependencies:
   flutter_test:
