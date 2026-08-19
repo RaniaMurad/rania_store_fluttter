@@ -13,10 +13,7 @@ class CategoriesScreen extends StatelessWidget {
       {'name': 'أحذية', 'icon': Icons.stairs_outlined},
     ];
 
-    return Directionality(
-      textDirection: TextDirection.rtl,
-
-      child: Scaffold(
+    return  Scaffold(
         backgroundColor: AppColors.background,
 
         appBar: AppBar(
@@ -142,7 +139,7 @@ class CategoriesScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      
     );
   }
 }

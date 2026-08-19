@@ -44,9 +44,7 @@ class ProductDetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
+    return  Scaffold(
         backgroundColor: AppColors.background,
 
         body: SafeArea(
@@ -287,7 +285,7 @@ class ProductDetailsScreen extends ConsumerWidget {
             ],
           ),
         ),
-      ),
+      
     );
   }
 }

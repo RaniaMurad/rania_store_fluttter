@@ -23,10 +23,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
     final totalPrice = cartNotifier.totalPrice;
     final totalItems = cartNotifier.totalItems;
 
-    return Directionality(
-      textDirection: TextDirection.rtl,
-
-      child: Scaffold(
+    return  Scaffold(
         backgroundColor: AppColors.background,
 
         appBar: AppBar(
@@ -239,7 +236,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
             ],
           ),
         ),
-      ),
+      
     );
   }
 }

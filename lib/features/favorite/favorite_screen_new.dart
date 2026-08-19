@@ -12,9 +12,7 @@ class FavoritesScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final favorites = ref.watch(favoriteProvider);
 
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
+    return  Scaffold(
         backgroundColor: AppColors.background,
 
         appBar: AppBar(
@@ -154,7 +152,7 @@ class FavoritesScreen extends ConsumerWidget {
                   );
                 },
               ),
-      ),
+      
     );
   }
 }
