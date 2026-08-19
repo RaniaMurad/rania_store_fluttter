@@ -1,4 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+/*import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rania_store/features/products/new/cart_item_model_new.dart';
 
 part 'cart_state.freezed.dart';
@@ -11,4 +11,4 @@ class CartState with _$CartState {
   // كده كل مرة القايمة تتغير، الـ state كلها بتبقى object مختلف
   // فعليًا (مش بس اسميًا)، فـ Bloc هيلاحظ الفرق ويبلّغ BlocBuilder.
   const factory CartState.updated(List<CartItemModel> items) = Updated;
-}
+}*/

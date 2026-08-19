@@ -6,6 +6,7 @@ import 'package:rania_store/core/models/product_model.dart';
 import 'package:rania_store/core/theme/app_colors.dart';
 
 import 'package:rania_store/features/cart/cart_screen_new.dart';
+import 'package:rania_store/features/cart/cart_screen_new2.dart';
 import 'package:rania_store/features/categories/categories_screen.dart';
 import 'package:rania_store/features/favorite/favorite_screen_new.dart';
 import 'package:rania_store/features/favorite/favorites_screen.dart';
@@ -14,6 +15,7 @@ import 'package:rania_store/features/favorite/logic/providers/favorite_provider.
 
 import 'package:rania_store/features/products/logic/providers/product_provider.dart';
 import 'package:rania_store/features/products/new/product_details_screen_new.dart';
+import 'package:rania_store/features/products/new/product_details_screen_new2.dart';
 import 'package:rania_store/features/profile/profile_screen.dart';
 
 class HomeScreen extends ConsumerWidget {

@@ -1,27 +1,27 @@
-/*import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:rania_store/core/theme/app_colors.dart';
-import 'package:rania_store/features/cart/logic/cubit/cart_cubit.dart';
+import 'package:rania_store/features/cart/logic/providers/cart_provider.dart';
 import 'package:rania_store/features/orders/order_success_screen.dart';
 
-class PaymentScreen extends StatefulWidget {
+class PaymentScreen extends ConsumerStatefulWidget {
   const PaymentScreen({super.key});
 
   @override
-  State<PaymentScreen> createState() => _PaymentScreenState();
+  ConsumerState<PaymentScreen> createState() => _PaymentScreenState();
 }
 
-class _PaymentScreenState extends State<PaymentScreen> {
+class _PaymentScreenState extends ConsumerState<PaymentScreen> {
   int selectedPayment = 0;
 
   @override
   Widget build(BuildContext context) {
-    // نجيب بيانات السلة الحالية
-    final cartCubit = context.read<CartCubit>();
+    // نراقب بيانات السلة الحالية
+    final cartNotifier = ref.watch(cartProvider.notifier);
 
-    final totalPrice = cartCubit.totalPrice;
-    final totalItems = cartCubit.totalItems;
+    final totalPrice = cartNotifier.totalPrice;
+    final totalItems = cartNotifier.totalItems;
 
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -134,20 +134,25 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
                   borderRadius: BorderRadius.circular(18),
 
-                  border: Border.all(color: AppColors.fieldBorder),
+                  border: Border.all(
+                    color: AppColors.fieldBorder,
+                  ),
                 ),
 
                 child: Column(
                   children: [
                     // عدد المنتجات
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
 
                       children: [
                         const Text(
                           'عدد المنتجات',
 
-                          style: TextStyle(color: AppColors.textGray),
+                          style: TextStyle(
+                            color: AppColors.textGray,
+                          ),
                         ),
 
                         Text(
@@ -165,7 +170,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
                     // الإجمالي
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
 
                       children: [
                         const Text(
@@ -201,15 +207,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
                 child: ElevatedButton(
                   onPressed: () {
-                    onPressed:
-                    () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const OrderSuccessScreen(),
-                        ),
-                      );
-                    };
+                    Navigator.pushReplacement(
+                      context,
+
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            const OrderSuccessScreen(),
+                      ),
+                    );
                   },
 
                   style: ElevatedButton.styleFrom(
@@ -272,7 +277,9 @@ class _PaymentOption extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
 
           border: Border.all(
-            color: isSelected ? AppColors.primary : AppColors.fieldBorder,
+            color: isSelected
+                ? AppColors.primary
+                : AppColors.fieldBorder,
 
             width: isSelected ? 2 : 1,
           ),
@@ -280,13 +287,18 @@ class _PaymentOption extends StatelessWidget {
 
         child: Row(
           children: [
-            Icon(icon, color: AppColors.primary, size: 28),
+            Icon(
+              icon,
+              color: AppColors.primary,
+              size: 28,
+            ),
 
             const SizedBox(width: 14),
 
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment:
+                    CrossAxisAlignment.start,
 
                 children: [
                   Text(
@@ -313,9 +325,13 @@ class _PaymentOption extends StatelessWidget {
             ),
 
             Icon(
-              isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
+              isSelected
+                  ? Icons.radio_button_checked
+                  : Icons.radio_button_off,
 
-              color: isSelected ? AppColors.primary : AppColors.textGray,
+              color: isSelected
+                  ? AppColors.primary
+                  : AppColors.textGray,
             ),
           ],
         ),
@@ -323,4 +339,3 @@ class _PaymentOption extends StatelessWidget {
     );
   }
 }
-*/
