@@ -1,58 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:rania_store/core/theme/app_colors.dart';
+import 'package:rania_store/core/widgets/app_scaffold.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-        backgroundColor: AppColors.background,
+    return AppScaffold(
+      title: 'طلباتي',
 
-        appBar: AppBar(
-          backgroundColor: AppColors.background,
-          elevation: 0,
-          centerTitle: true,
+      body: ListView(
+        padding: const EdgeInsets.all(20),
 
-          title: const Text(
-            'طلباتي',
-            style: TextStyle(
-              color: AppColors.textDark,
-              fontWeight: FontWeight.bold,
-            ),
+        children: const [
+          OrderCard(
+            orderNumber: '#1001',
+            date: '20 يوليو 2026',
+            status: 'تم التوصيل',
+            statusColor: Colors.green,
+            total: 120.00,
           ),
-        ),
 
-        body: ListView(
-          padding: const EdgeInsets.all(20),
+          OrderCard(
+            orderNumber: '#1002',
+            date: '22 يوليو 2026',
+            status: 'قيد التجهيز',
+            statusColor: Colors.orange,
+            total: 85.50,
+          ),
 
-          children: const [
-            OrderCard(
-              orderNumber: '#1001',
-              date: '20 يوليو 2026',
-              status: 'تم التوصيل',
-              statusColor: Colors.green,
-              total: 120.00,
-            ),
-
-            OrderCard(
-              orderNumber: '#1002',
-              date: '22 يوليو 2026',
-              status: 'قيد التجهيز',
-              statusColor: Colors.orange,
-              total: 85.50,
-            ),
-
-            OrderCard(
-              orderNumber: '#1003',
-              date: '25 يوليو 2026',
-              status: 'قيد الشحن',
-              statusColor: Colors.blue,
-              total: 250.00,
-            ),
-          ],
-        ),
-      
+          OrderCard(
+            orderNumber: '#1003',
+            date: '25 يوليو 2026',
+            status: 'قيد الشحن',
+            statusColor: Colors.blue,
+            total: 250.00,
+          ),
+        ],
+      ),
     );
   }
 }

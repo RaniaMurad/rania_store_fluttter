@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rania_store/core/theme/app_colors.dart';
+import 'package:rania_store/core/widgets/app_scaffold.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -13,133 +14,115 @@ class CategoriesScreen extends StatelessWidget {
       {'name': 'أحذية', 'icon': Icons.stairs_outlined},
     ];
 
-    return  Scaffold(
-        backgroundColor: AppColors.background,
+    return AppScaffold(
+      title: 'التصنيفات',
 
-        appBar: AppBar(
-          backgroundColor: AppColors.background,
-          elevation: 0,
+      leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
 
-          centerTitle: true,
+        icon: const Icon(Icons.arrow_back, color: AppColors.primary),
+      ),
 
-          title: const Text(
-            'التصنيفات',
+      body: Padding(
+        padding: const EdgeInsets.all(20),
 
-            style: TextStyle(
-              color: AppColors.textDark,
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+
+          children: [
+            const Text(
+              'تصفح حسب التصنيف',
+
+              style: TextStyle(
+                color: AppColors.textDark,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
 
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            const SizedBox(height: 20),
 
-            icon: const Icon(Icons.arrow_back, color: AppColors.primary),
-          ),
-        ),
+            // التصنيفات
+            Expanded(
+              child: GridView.builder(
+                itemCount: categories.length,
 
-        body: Padding(
-          padding: const EdgeInsets.all(20),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
 
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisSpacing: 14,
 
-            children: [
-              const Text(
-                'تصفح حسب التصنيف',
+                  mainAxisSpacing: 14,
 
-                style: TextStyle(
-                  color: AppColors.textDark,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                  childAspectRatio: 1.25,
                 ),
-              ),
 
-              const SizedBox(height: 20),
+                itemBuilder: (context, index) {
+                  final category = categories[index];
 
-              // التصنيفات
-              Expanded(
-                child: GridView.builder(
-                  itemCount: categories.length,
+                  return GestureDetector(
+                    onTap: () {
+                      // لاحقًا نفتح المنتجات الخاصة بالتصنيف
+                    },
 
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.fieldFill,
 
-                    crossAxisSpacing: 14,
+                        borderRadius: BorderRadius.circular(20),
 
-                    mainAxisSpacing: 14,
-
-                    childAspectRatio: 1.25,
-                  ),
-
-                  itemBuilder: (context, index) {
-                    final category = categories[index];
-
-                    return GestureDetector(
-                      onTap: () {
-                        // لاحقًا نفتح المنتجات الخاصة بالتصنيف
-                      },
-
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.fieldFill,
-
-                          borderRadius: BorderRadius.circular(20),
-
-                          border: Border.all(color: AppColors.primary),
-                        ),
-
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(18),
-
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-
-                                color: AppColors.background,
-
-                                border: Border.all(color: AppColors.primary),
-                              ),
-
-                              child: Icon(
-                                category['icon'] as IconData,
-
-                                color: AppColors.primary,
-
-                                size: 36,
-                              ),
-                            ),
-
-                            const SizedBox(height: 14),
-
-                            Text(
-                              category['name'] as String,
-
-                              style: const TextStyle(
-                                color: AppColors.textDark,
-
-                                fontSize: 16,
-
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
+                        border: Border.all(color: AppColors.primary),
                       ),
-                    );
-                  },
-                ),
+
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(18),
+
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+
+                              color: AppColors.background,
+
+                              border: Border.all(color: AppColors.primary),
+                            ),
+
+                            child: Icon(
+                              category['icon'] as IconData,
+
+                              color: AppColors.primary,
+
+                              size: 36,
+                            ),
+                          ),
+
+                          const SizedBox(height: 14),
+
+                          Text(
+                            category['name'] as String,
+
+                            style: const TextStyle(
+                              color: AppColors.textDark,
+
+                              fontSize: 16,
+
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      
+      ),
     );
   }
 }
