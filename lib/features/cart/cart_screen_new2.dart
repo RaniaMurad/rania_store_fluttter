@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:rania_store/core/theme/app_colors.dart';
+import 'package:rania_store/core/widgets/app_scaffold.dart';
 import 'package:rania_store/features/cart/logic/providers/cart_provider.dart';
 import 'package:rania_store/features/checkout/checkout_screen_new.dart';
 import 'package:rania_store/features/products/new/cart_item_card_new.dart';
@@ -26,79 +26,57 @@ class CartScreenContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final items = ref.watch(cartProvider);
 
-    return  Scaffold(
-        backgroundColor: AppColors.background,
+    return AppScaffold(
+      title: 'السلة',
 
-        // ================= APP BAR =================
-        appBar: AppBar(
-          backgroundColor: AppColors.background,
-          elevation: 0,
-          centerTitle: true,
+      // ================= BODY =================
+      body: items.isEmpty
+          ? const Center(
+              child: Text(
+                'السلة فارغة',
 
-          title: const Text(
-            'السلة',
+                style: TextStyle(color: AppColors.textGray, fontSize: 16),
+              ),
+            )
+          : Column(
+              children: [
+                // ================= PRODUCTS =================
+                Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(16),
 
-            style: TextStyle(
-              color: AppColors.textDark,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+                    itemCount: items.length,
 
-        // ================= BODY =================
-        body: items.isEmpty
-            ? const Center(
-                child: Text(
-                  'السلة فارغة',
+                    itemBuilder: (context, index) {
+                      final item = items[index];
 
-                  style: TextStyle(
-                    color: AppColors.textGray,
-                    fontSize: 16,
+                      return CartItemCard(
+                        item: item,
+
+                        onRemove: () {
+                          ref.read(cartProvider.notifier).removeFromCart(item);
+                        },
+
+                        onIncrement: () {
+                          ref
+                              .read(cartProvider.notifier)
+                              .increaseQuantity(item);
+                        },
+
+                        onDecrement: () {
+                          ref
+                              .read(cartProvider.notifier)
+                              .decreaseQuantity(item);
+                        },
+                      );
+                    },
                   ),
                 ),
-              )
-            : Column(
-                children: [
-                  // ================= PRODUCTS =================
-                  Expanded(
-                    child: ListView.builder(
-                      padding: const EdgeInsets.all(16),
 
-                      itemCount: items.length,
-
-                      itemBuilder: (context, index) {
-                        final item = items[index];
-
-                        return CartItemCard(
-                          item: item,
-
-                          onRemove: () {
-                            ref
-                                .read(cartProvider.notifier)
-                                .removeFromCart(item);
-                          },
-
-                          onIncrement: () {
-                            ref
-                                .read(cartProvider.notifier)
-                                .increaseQuantity(item);
-                          },
-
-                          onDecrement: () {
-                            ref
-                                .read(cartProvider.notifier)
-                                .decreaseQuantity(item);
-                          },
-                        );
-                      },
-                    ),
-                  ),
-
-                  // ================= SUMMARY =================
-                  _buildSummary(context, ref),
-                ],
-              ),
-      
+                // ================= SUMMARY =================
+                _buildSummary(context, ref),
+              ],
+            ),
     );
   }
 
@@ -115,11 +93,7 @@ class CartScreenContent extends ConsumerWidget {
       decoration: BoxDecoration(
         color: AppColors.fieldFill,
 
-        border: const Border(
-          top: BorderSide(
-            color: AppColors.fieldBorder,
-          ),
-        ),
+        border: const Border(top: BorderSide(color: AppColors.fieldBorder)),
       ),
 
       child: Column(
@@ -132,10 +106,7 @@ class CartScreenContent extends ConsumerWidget {
               const Text(
                 'الإجمالي',
 
-                style: TextStyle(
-                  color: AppColors.textDark,
-                  fontSize: 15,
-                ),
+                style: TextStyle(color: AppColors.textDark, fontSize: 15),
               ),
 
               Text(
@@ -162,9 +133,7 @@ class CartScreenContent extends ConsumerWidget {
                 Navigator.push(
                   context,
 
-                  MaterialPageRoute(
-                    builder: (_) => const CheckoutScreen(),
-                  ),
+                  MaterialPageRoute(builder: (_) => const CheckoutScreen()),
                 );
               },
 

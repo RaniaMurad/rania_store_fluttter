@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
 import 'app_colors.dart';
 
@@ -30,4 +30,4 @@ class AppGradients {
     end: Alignment.bottomCenter,
     colors: [Color(0xFFFFFFFF), Color(0xFFF9F5FF)],
   );
-}
+}*/
