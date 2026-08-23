@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 import 'package:rania_store/core/theme/app_colors.dart';
 import 'package:rania_store/core/widgets/app_scaffold.dart';
 
@@ -15,7 +16,7 @@ class CategoriesScreen extends StatelessWidget {
     ];
 
     return AppScaffold(
-      title: 'التصنيفات',
+      title: 'categories'.tr,
 
       leading: IconButton(
         onPressed: () {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 import 'package:rania_store/core/theme/app_colors.dart';
 import 'package:rania_store/core/widgets/app_scaffold.dart';
@@ -27,13 +28,13 @@ class CartScreenContent extends ConsumerWidget {
     final items = ref.watch(cartProvider);
 
     return AppScaffold(
-      title: 'السلة',
+      title: 'cart'.tr,
 
       // ================= BODY =================
       body: items.isEmpty
-          ? const Center(
+          ?  Center(
               child: Text(
-                'السلة فارغة',
+                'cart_empty'.tr,
 
                 style: TextStyle(color: AppColors.textGray, fontSize: 16),
               ),

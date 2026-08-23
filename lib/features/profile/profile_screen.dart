@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rania_store/core/theme/app_colors.dart';
 import 'package:rania_store/core/widgets/app_scaffold.dart';
 import 'package:rania_store/features/orders/orders_screen.dart';
@@ -9,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      title: 'الحساب',
+      title: 'account'.tr,
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -81,42 +82,39 @@ class ProfileScreen extends StatelessWidget {
             // ================= ACCOUNT OPTIONS =================
             _ProfileOption(
               icon: Icons.person_outline,
-              title: 'تعديل الملف الشخصي',
+              title: 'edit_Profile'.tr,
               onTap: () {},
             ),
 
             _ProfileOption(
               icon: Icons.shopping_bag_outlined,
-              title: 'طلباتي',
+              title: 'my_orders'.tr,
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const OrdersScreen()),
-                );
+                Get.to(() => const OrdersScreen());
               },
             ),
 
             _ProfileOption(
               icon: Icons.location_on_outlined,
-              title: 'العناوين',
+              title: 'addresses'.tr,
               onTap: () {},
             ),
 
             _ProfileOption(
               icon: Icons.payment_outlined,
-              title: 'طرق الدفع',
+              title: 'payment_methods'.tr,
               onTap: () {},
             ),
 
             _ProfileOption(
               icon: Icons.notifications_none,
-              title: 'الإشعارات',
+              title: 'notifications'.tr,
               onTap: () {},
             ),
 
             _ProfileOption(
               icon: Icons.settings_outlined,
-              title: 'الإعدادات',
+              title: 'settings'.tr,
               onTap: () {},
             ),
 
@@ -125,7 +123,7 @@ class ProfileScreen extends StatelessWidget {
             // ================= LOGOUT =================
             _ProfileOption(
               icon: Icons.logout,
-              title: 'تسجيل الخروج',
+              title: 'log_out'.tr,
               iconColor: Colors.redAccent,
               textColor: Colors.redAccent,
               onTap: () {
@@ -148,8 +146,8 @@ class ProfileScreen extends StatelessWidget {
         return AlertDialog(
           backgroundColor: AppColors.background,
 
-          title: const Text(
-            'تسجيل الخروج',
+          title:  Text(
+            'log_out'.tr,
             textAlign: TextAlign.right,
 
             style: TextStyle(
@@ -158,8 +156,8 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
 
-          content: const Text(
-            'هل أنت متأكد أنك تريد تسجيل الخروج؟',
+          content:  Text(
+            'are_you_sure_you_want_to_log_out'.tr,
             textAlign: TextAlign.right,
 
             style: TextStyle(color: AppColors.textGray),
@@ -182,7 +180,7 @@ class ProfileScreen extends StatelessWidget {
                 Navigator.pop(context);
 
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('تم تسجيل الخروج')),
+                   SnackBar(content: Text('logged_out_successfully'.tr)),
                 );
               },
 

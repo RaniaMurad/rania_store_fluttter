@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 import 'package:rania_store/core/theme/app_colors.dart';
 import 'package:rania_store/core/widgets/app_scaffold.dart';
@@ -13,10 +14,10 @@ class FavoritesScreen extends ConsumerWidget {
     final favorites = ref.watch(favoriteProvider);
 
     return AppScaffold(
-      title: 'المفضلة',
+      title: 'favorite'.tr,
 
       body: favorites.isEmpty
-          ? const Center(
+          ?  Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -29,7 +30,7 @@ class FavoritesScreen extends ConsumerWidget {
                   SizedBox(height: 16),
 
                   Text(
-                    'لا توجد منتجات في المفضلة',
+                    'no_products_in_favorites'.tr,
                     style: TextStyle(color: AppColors.textGray, fontSize: 18),
                   ),
                 ],
