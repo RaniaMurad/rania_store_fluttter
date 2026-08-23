@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 import 'package:rania_store/core/theme/app_colors.dart';
 import 'package:rania_store/core/widgets/app_scaffold.dart';
@@ -19,7 +20,7 @@ class CheckoutScreen extends ConsumerWidget {
     final totalPrice = cartNotifier.totalPrice;
 
     return AppScaffold(
-      title: 'إتمام الطلب',
+      title: 'complete_order'.tr,
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -29,8 +30,8 @@ class CheckoutScreen extends ConsumerWidget {
 
           children: [
             // ================= ADDRESS =================
-            const Text(
-              'عنوان التوصيل',
+            Text(
+              'address'.tr,
               style: TextStyle(
                 fontSize: 17,
                 fontWeight: FontWeight.bold,
@@ -64,8 +65,8 @@ class CheckoutScreen extends ConsumerWidget {
             const SizedBox(height: 24),
 
             // ================= ORDER SUMMARY =================
-            const Text(
-              'ملخص الطلب',
+            Text(
+              'summary'.tr,
               style: TextStyle(
                 fontSize: 17,
                 fontWeight: FontWeight.bold,
@@ -90,8 +91,8 @@ class CheckoutScreen extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                     children: [
-                      const Text(
-                        'عدد المنتجات',
+                      Text(
+                        'quantity'.tr,
                         style: TextStyle(color: AppColors.textGray),
                       ),
 
@@ -111,8 +112,8 @@ class CheckoutScreen extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                     children: [
-                      const Text(
-                        'الإجمالي',
+                      Text(
+                        'total'.tr,
                         style: TextStyle(color: AppColors.textGray),
                       ),
 
@@ -133,8 +134,8 @@ class CheckoutScreen extends ConsumerWidget {
             const SizedBox(height: 24),
 
             // ================= PAYMENT =================
-            const Text(
-              'طريقة الدفع',
+            Text(
+              'payment'.tr,
               style: TextStyle(
                 fontSize: 17,
                 fontWeight: FontWeight.bold,
@@ -153,14 +154,14 @@ class CheckoutScreen extends ConsumerWidget {
                 border: Border.all(color: AppColors.fieldBorder),
               ),
 
-              child: const Row(
+              child: Row(
                 children: [
                   Icon(Icons.money_outlined, color: AppColors.primary),
 
                   SizedBox(width: 12),
 
                   Text(
-                    'الدفع عند الاستلام',
+                    'cash'.tr,
                     style: TextStyle(color: AppColors.textDark, fontSize: 15),
                   ),
 
@@ -180,11 +181,7 @@ class CheckoutScreen extends ConsumerWidget {
 
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-
-                    MaterialPageRoute(builder: (_) => const PaymentScreen()),
-                  );
+                  Get.to(() => PaymentScreen());
                 },
 
                 style: ElevatedButton.styleFrom(
@@ -195,8 +192,8 @@ class CheckoutScreen extends ConsumerWidget {
                   ),
                 ),
 
-                child: const Text(
-                  'الانتقال إلى الدفع',
+                child:  Text(
+                  'proceed_to_payment'.tr,
 
                   style: TextStyle(
                     color: Colors.black,

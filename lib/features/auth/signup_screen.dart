@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rania_store/core/theme/app_colors.dart';
 import 'package:rania_store/features/auth/widgets/custom_text_field.dart';
 import 'package:rania_store/features/auth/widgets/primary_button.dart';
@@ -29,7 +30,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Row(
                   children: [
                     IconButton(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () => Get.back(),
                       icon: const Icon(
                         Icons.arrow_back,
                         color: AppColors.textDark,
@@ -96,7 +97,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       style: TextStyle(color: AppColors.textGray),
                     ),
                     TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () => Get.back(),
                       child: const Text(
                         'تسجيل الدخول',
                         style: TextStyle(
