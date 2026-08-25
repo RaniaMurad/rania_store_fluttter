@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'package:rania_store/core/models/product_model.dart';
 import 'package:rania_store/core/theme/app_colors.dart';
+import 'package:rania_store/core/theme/theme_provider.dart';
 
 //import 'package:rania_store/features/cart/cart_screen_new.dart';
 import 'package:rania_store/features/cart/cart_screen_new2.dart';
@@ -29,14 +30,18 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-class _HomeView extends StatefulWidget {
+// =====================================================
+// HOME VIEW
+// =====================================================
+
+class _HomeView extends ConsumerStatefulWidget {
   const _HomeView();
 
   @override
-  State<_HomeView> createState() => _HomeViewState();
+  ConsumerState<_HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<_HomeView> {
+class _HomeViewState extends ConsumerState<_HomeView> {
   int _navIndex = 0;
 
   @override
@@ -47,6 +52,7 @@ class _HomeViewState extends State<_HomeView> {
       {'label': 'shoes'.tr, 'icon': Icons.stairs_outlined},
       {'label': 'electronics'.tr, 'icon': Icons.headphones_outlined},
     ];
+
     return Scaffold(
       backgroundColor: AppColors.background,
 
@@ -124,7 +130,6 @@ class _HomeViewState extends State<_HomeView> {
                       Get.to(
                         () => const CartScreen(),
                         transition: Transition.rightToLeft,
-                        // duration: const Duration(milliseconds: 500),
                       );
                     },
 
@@ -134,10 +139,12 @@ class _HomeViewState extends State<_HomeView> {
                     ),
                   ),
 
+                  // ================= MENU =================
                   IconButton(
                     onPressed: () {
-                      _showLanguageBottomSheet(context);
+                      _showMenuBottomSheet(context);
                     },
+
                     icon: const Icon(Icons.menu, color: AppColors.textDark),
                   ),
                 ],
@@ -229,7 +236,7 @@ class _HomeViewState extends State<_HomeView> {
                       child: Text(
                         'shop_now'.tr,
 
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
@@ -249,7 +256,7 @@ class _HomeViewState extends State<_HomeView> {
                   Text(
                     'categories'.tr,
 
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                       color: AppColors.textDark,
@@ -258,18 +265,13 @@ class _HomeViewState extends State<_HomeView> {
 
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const CategoriesScreen(),
-                        ),
-                      );
+                      Get.to(() => const CategoriesScreen());
                     },
 
                     child: Text(
                       'view_all'.tr,
 
-                      style: TextStyle(color: AppColors.primary),
+                      style: const TextStyle(color: AppColors.primary),
                     ),
                   ),
                 ],
@@ -325,7 +327,7 @@ class _HomeViewState extends State<_HomeView> {
                   Text(
                     'best_products'.tr,
 
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                       color: AppColors.textDark,
@@ -338,7 +340,7 @@ class _HomeViewState extends State<_HomeView> {
                     child: Text(
                       'view_all'.tr,
 
-                      style: TextStyle(color: AppColors.primary),
+                      style: const TextStyle(color: AppColors.primary),
                     ),
                   ),
                 ],
@@ -437,29 +439,13 @@ class _HomeViewState extends State<_HomeView> {
 
         onTap: (index) {
           if (index == 1) {
-            Navigator.push(
-              context,
-
-              MaterialPageRoute(builder: (_) => const CategoriesScreen()),
-            );
+            Get.to(() => const CategoriesScreen());
           } else if (index == 2) {
-            Navigator.push(
-              context,
-
-              MaterialPageRoute(builder: (_) => const FavoritesScreen()),
-            );
+            Get.to(() => const FavoritesScreen());
           } else if (index == 3) {
-            Navigator.push(
-              context,
-
-              MaterialPageRoute(builder: (_) => const CartScreen()),
-            );
+            Get.to(() => const CartScreen());
           } else if (index == 4) {
-            Navigator.push(
-              context,
-
-              MaterialPageRoute(builder: (_) => const ProfileScreen()),
-            );
+            Get.to(() => const ProfileScreen());
           } else {
             setState(() {
               _navIndex = index;
@@ -477,31 +463,116 @@ class _HomeViewState extends State<_HomeView> {
 
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: const Icon(Icons.home_outlined),
             label: 'home'.tr,
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.apps_outlined),
+            icon: const Icon(Icons.apps_outlined),
             label: 'categories'.tr,
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
+            icon: const Icon(Icons.favorite_border),
             label: 'favorites'.tr,
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
+            icon: const Icon(Icons.shopping_cart_outlined),
             label: 'cart'.tr,
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
+            icon: const Icon(Icons.person_outline),
             label: 'account'.tr,
           ),
         ],
       ),
+    );
+  }
+
+  // =====================================================
+  // MENU BOTTOM SHEET
+  // =====================================================
+
+  void _showMenuBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+      ),
+
+      builder: (context) {
+        return SafeArea(
+          child: Consumer(
+            builder: (context, ref, child) {
+              final themeMode = ref.watch(themeModeProvider);
+
+              final isDarkMode = themeMode == ThemeMode.dark;
+
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+
+                children: [
+                  const SizedBox(height: 10),
+
+                  // ================= TITLE =================
+                  const Padding(
+                    padding: EdgeInsets.all(16),
+
+                    child: Text(
+                      'Settings / الإعدادات',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+
+                  // ================= DARK MODE =================
+                  ListTile(
+                    leading: Icon(
+                      isDarkMode ? Icons.dark_mode : Icons.light_mode,
+                    ),
+
+                    title: const Text('Dark Mode / الوضع الداكن'),
+
+                    trailing: Switch(
+                      value: isDarkMode,
+
+                      activeColor: AppColors.primary,
+
+                      onChanged: (value) {
+                        ref.read(themeModeProvider.notifier).state = value
+                            ? ThemeMode.dark
+                            : ThemeMode.light;
+                      },
+                    ),
+                  ),
+
+                  // ================= LANGUAGE =================
+                  ListTile(
+                    leading: const Icon(Icons.language),
+
+                    title: const Text('Language / اللغة'),
+
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+
+                    onTap: () {
+                      Navigator.pop(context);
+
+                      _showLanguageBottomSheet(context);
+                    },
+                  ),
+
+                  const SizedBox(height: 10),
+                ],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
@@ -634,39 +705,57 @@ class _ProductCard extends ConsumerWidget {
   }
 }
 
+// =====================================================
+// LANGUAGE BOTTOM SHEET
+// =====================================================
+
 void _showLanguageBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
+
     builder: (context) {
       return SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
+
           children: [
             const Padding(
               padding: EdgeInsets.all(16),
+
               child: Text(
                 'اختر اللغة / Choose Language',
+
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
+
+            // ================= ARABIC =================
             ListTile(
               title: const Text('العربية'),
+
               trailing: Get.locale?.languageCode == 'ar'
                   ? const Icon(Icons.check, color: AppColors.primary)
                   : null,
+
               onTap: () {
                 Get.updateLocale(const Locale('ar'));
-                Navigator.pop(context);
+
+                Get.back();
               },
             ),
+
+            // ================= ENGLISH =================
             ListTile(
               title: const Text('English'),
+
               trailing: Get.locale?.languageCode == 'en'
                   ? const Icon(Icons.check, color: AppColors.primary)
                   : null,
+
               onTap: () {
                 Get.updateLocale(const Locale('en'));
-                Navigator.pop(context);
+
+                Get.back();
               },
             ),
           ],

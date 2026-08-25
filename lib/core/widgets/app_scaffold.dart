@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rania_store/core/theme/app_colors.dart';
+//import 'package:rania_store/core/theme/app_colors.dart';
 
 class AppScaffold extends StatelessWidget {
   final Widget body;

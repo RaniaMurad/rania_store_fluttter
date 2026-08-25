@@ -32,7 +32,7 @@ class CartScreenContent extends ConsumerWidget {
 
       // ================= BODY =================
       body: items.isEmpty
-          ?  Center(
+          ? Center(
               child: Text(
                 'cart_empty'.tr,
 
@@ -131,11 +131,7 @@ class CartScreenContent extends ConsumerWidget {
 
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-
-                  MaterialPageRoute(builder: (_) => const CheckoutScreen()),
-                );
+                Get.to(() => const CheckoutScreen());
               },
 
               style: ElevatedButton.styleFrom(

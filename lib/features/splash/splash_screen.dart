@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rania_store/core/helper/images.dart';
 import 'package:rania_store/features/onboarding/onboarding_new.dart';
 
@@ -37,10 +38,11 @@ class _SplashScreenState extends State<SplashScreen>
     _controller.forward();
 
     Timer(const Duration(seconds: 4), () {
-      Navigator.pushReplacement(
+      Get.off(() => const OnboardingScreen());
+     /* Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const OnboardingScreen()),
-      );
+      );*/
     });
   }
 

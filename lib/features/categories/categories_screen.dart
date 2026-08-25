@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/utils.dart';
 import 'package:rania_store/core/theme/app_colors.dart';
 import 'package:rania_store/core/widgets/app_scaffold.dart';
@@ -20,7 +21,7 @@ class CategoriesScreen extends StatelessWidget {
 
       leading: IconButton(
         onPressed: () {
-          Navigator.pop(context);
+        Get.back();
         },
 
         icon: const Icon(Icons.arrow_back, color: AppColors.primary),

@@ -166,7 +166,7 @@ class ProfileScreen extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context);
+                Get.back();
               },
 
               child: const Text(
@@ -177,7 +177,7 @@ class ProfileScreen extends StatelessWidget {
 
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Get.back();
 
                 ScaffoldMessenger.of(context).showSnackBar(
                    SnackBar(content: Text('logged_out_successfully'.tr)),

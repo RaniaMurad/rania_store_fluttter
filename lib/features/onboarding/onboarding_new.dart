@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 //import 'package:rania_store/core/helper/images.dart';
 import 'package:rania_store/features/auth/login_screen.dart';
 import 'package:rania_store/features/onboarding/onbording_model_new.dart';
@@ -167,12 +168,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
+                        Get.off((context) => const LoginScreen());
+                       /* Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (_) => const LoginScreen(),
                           ),
-                        );
+                        );*/
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
