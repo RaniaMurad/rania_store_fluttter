@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:rania_store/features/auth/widgets/custom_text_field.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -73,7 +74,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         alignment: Alignment.centerLeft,
                         child: TextButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            Get.back();
                           },
                           child: const Text(
                             "Back",
@@ -353,7 +354,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                             Get.back();
                             },
                             child: const Text(
                               "Sign In",

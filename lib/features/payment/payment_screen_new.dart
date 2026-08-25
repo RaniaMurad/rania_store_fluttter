@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 import 'package:rania_store/core/theme/app_colors.dart';
 import 'package:rania_store/core/widgets/app_scaffold.dart';
@@ -185,13 +186,14 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
 
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
+                  Get.off(() => const OrderSuccessScreen());
+                  /*Navigator.pushReplacement(
                     context,
 
                     MaterialPageRoute(
                       builder: (_) => const OrderSuccessScreen(),
                     ),
-                  );
+                  );*/
                 },
 
                 style: ElevatedButton.styleFrom(
